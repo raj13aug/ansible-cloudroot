@@ -6,7 +6,7 @@ Step 2: Create an Ansible Vault file to keep the Docker Registry credentials.
 Step 3: Building container images using Ansible
         ansible-playbook container-build.yaml -e 'NODES=localhost' --ask-vault-password
 
-
+####################################################
 Git Command:
 
 This will remove all uncommitted changes and then pull:
@@ -14,3 +14,7 @@ This will remove all uncommitted changes and then pull:
 git reset --hard HEAD
 git pull        
          
+To delete all the images,
+
+docker rmi -f $(docker images -aq)
+######################################################

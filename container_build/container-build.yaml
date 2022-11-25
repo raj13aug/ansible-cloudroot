@@ -3,11 +3,11 @@
   hosts: "{{ NODES }}"
   become: yes
   vars:
-    application_repo: https://github.com/raj13aug/ansible-cloudroot/nodejs
+    application_repo: https://github.com/raj13aug/nodejs
     application_branch: main
     application_name: app
     application_version: v1
-    container_image_repository: ansible-nodejs
+    container_image_repository: raj13aug
     container_registry_url: https://index.docker.io/v1/
 
   vars_files:

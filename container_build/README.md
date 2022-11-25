@@ -1,6 +1,8 @@
 Step 1: Configuring Docker Registry Access Token
+
 Step 2: Create an Ansible Vault file to keep the Docker Registry credentials.
-        ansible-valut create vars/docker-credential.yaml
+        ansible-vault create vars/docker-credential.yaml
+
 Step 3: Building container images using Ansible
-        ansible-playbook container-build.yaml -e 'NODES=dockerhost' --ask-valut-password
+        ansible-playbook container-build.yaml -e 'NODES=localhost' --ask-vault-password
          

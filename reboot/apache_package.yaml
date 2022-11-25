@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  tasks:
+    - name: install the apache package
+      ansible.builtin.apt:
+          name: apache2
+          state: latest
+
+    - name: Reboot AmazonLinux
+      ansible.builtin.reboot:
+          msg: "Reboot initiated by Ansible after Linux kernel update"
+          reboot_timeout: 3600

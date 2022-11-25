@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  tasks:
+    - name: See if an Amazon Linux instance needs a reboot
+      ansible.builtin.command: who | wc --lines
+      register: reg_reboot_required
+      ignore_errors: true
+      changed_when: reg_reboot_required.stdout < 2
+      notify:
+          - Reboot AmazonLinux
+    
+  handlers:
+      - name: Reboot AmazonLinux
+        ansible.builtin.reboot:
+            msg: "Reboot initiated by Ansible after Linux kernel update"
+            reboot_timeout: 3600	  

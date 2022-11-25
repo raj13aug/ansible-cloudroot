@@ -17,4 +17,5 @@ git pull
 To delete all the images,
 
 docker rmi -f $(docker images -aq)
+
 ######################################################

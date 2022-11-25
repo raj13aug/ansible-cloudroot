@@ -5,7 +5,7 @@
   vars:
     application_repo: https://github.com/raj13aug/nodejs
     application_branch: main
-    application_name: app
+    application_name: app-nodejs
     application_version: v1
     container_image_repository: raj13aug
     container_registry_url: https://index.docker.io/v1/

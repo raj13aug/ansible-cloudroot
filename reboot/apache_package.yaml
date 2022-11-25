@@ -1,12 +1,9 @@
 ---
 - hosts: localhost
   tasks:
-    - name: install the apache package
+    - name: Install the package based on the return code
       ansible.builtin.apt:
-          name: apache2
-          state: latest
-
-    - name: Reboot AmazonLinux
-      ansible.builtin.reboot:
-          msg: "Reboot initiated by Ansible after Linux kernel update"
-          reboot_timeout: 3600
+        pkg: python3-virtualenv
+        state: present
+      when: virtualenv_output.rc != 0
+      register: virtualenv_install_output          

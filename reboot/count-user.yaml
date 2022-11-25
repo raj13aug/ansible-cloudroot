@@ -5,7 +5,7 @@
       ansible.builtin.command: who | wc --lines
       register: reg_reboot_required
       ignore_errors: true
-      changed_when: reg_reboot_required.stdout < 2
+      changed_when: reg_reboot_required.stdout != 0
       notify:
           - Reboot AmazonLinux
     

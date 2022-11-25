@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   tasks:
-    - name: Install the package based on the return code
+    - name: "Install the package based on the return code"
       ansible.builtin.apt:
         pkg: apache2
         state: present

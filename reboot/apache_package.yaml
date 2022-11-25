@@ -5,5 +5,5 @@
       ansible.builtin.apt:
         pkg: apache2
         state: present
-      when: virtualenv_output.rc != 0
+      when: apache2.rc != 0
       register: virtualenv_install_output          

@@ -3,7 +3,7 @@
   tasks:
     - name: Install the package based on the return code
       ansible.builtin.apt:
-        pkg: python3-virtualenv
+        pkg: apache2
         state: present
       when: virtualenv_output.rc != 0
       register: virtualenv_install_output          

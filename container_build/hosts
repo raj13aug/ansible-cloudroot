@@ -1,2 +1,0 @@
-[dockerhost]
-node1 ansible_host=localhost

@@ -19,9 +19,6 @@
         prefix: "container_build_"
       register: temp_location
 
-    - debug:
-        msg: "{{ temp_location.path }}"
-
     - name: Git checkout the application
       ansible.builtin.git:
         repo: "{{ application_repo }}"

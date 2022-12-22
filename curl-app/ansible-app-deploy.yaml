@@ -1,0 +1,50 @@
+---
+- name: Deploying curl Pod
+  hosts: localhost
+  gather_facts: false
+  vars:
+    kubeconfig_file: ~/.kube/config
+    namespace_name: app-ns
+  tasks:
+    - name: Create a k8s namespace
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_file }}"
+        name: "{{ namespace_name }}"
+        api_version: v1
+        kind: Namespace
+        state: present
+
+    - name: Create Deployment
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_file }}"
+        state: present
+        src: app-deploy.yaml
+        namespace: "{{ namespace_name }}"
+
+    - name: Expose application on NodePort
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_file }}"
+        state: present
+        src: app-service.yaml
+        namespace: "{{ namespace_name }}"  
+
+    - name: Create a Pod with curl image
+      kubernetes.core.k8s:
+        kubeconfig: "{{ kubeconfig_file }}"
+        state: present
+        src: curl-app-pod.yaml
+        namespace: "{{ namespace_name }}"
+
+    - name: Verify app sevice 
+      ignore_errors: yes
+      kubernetes.core.k8s_exec:
+        kubeconfig: "{{ kubeconfig_file }}"
+        namespace: "{{ namespace_name }}"
+        pod: curl-pod
+        command: curl app-svc:3000
+      register: curl_output
+
+    - name: Display service check output
+      debug:
+        msg: "{{ curl_output.stdout_lines }}"
+      when: curl_output.failed == false      

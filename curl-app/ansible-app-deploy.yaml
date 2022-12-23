@@ -42,7 +42,7 @@
         kubeconfig: "{{ kubeconfig_file }}"
         namespace: "{{ namespace_name }}"
         pod: curl-pod
-        command: curl app-svc:3000
+        command: curl app-svc:80
       register: curl_output
 
     - name: Display service check output

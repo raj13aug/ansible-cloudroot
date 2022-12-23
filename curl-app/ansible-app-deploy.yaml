@@ -22,7 +22,7 @@
         src: app-deploy.yaml
         namespace: "{{ namespace_name }}"
 
-    - name: Expose application on NodePort
+    - name: Expose application on ClusterIP
       kubernetes.core.k8s:
         kubeconfig: "{{ kubeconfig_file }}"
         state: "{{ state }}"

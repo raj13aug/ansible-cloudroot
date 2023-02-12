@@ -1,0 +1,17 @@
+---
+- name: Scaling Applications in Kubernetes
+  hosts: localhost
+  gather_facts: false
+  vars:
+    kubeconfig_file: ~/.kube/config
+    namespace_name: app-ns
+  tasks:
+    - name: Scale deployment
+      kubernetes.core.k8s_scale:
+        kubeconfig: "{{ kubeconfig_file }}"
+        api_version: v1
+        kind: Deployment
+        name: app
+        namespace: "{{ namespace_name }}"
+        replicas: 3
+        wait_timeout: 30
